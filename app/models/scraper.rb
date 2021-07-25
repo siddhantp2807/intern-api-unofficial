@@ -13,7 +13,7 @@ class Scraper
         doc = HTTParty.get("https://internshala.com/internships/page-#{@page_no}")
         parsed_doc = Nokogiri::HTML(doc.body)
         
-        delta =  parsed_doc.css("div#internship_list_container_#{@page_no} div.individual_internship")
+        delta =  parsed_doc.css("a.view_detail_button").map {|x| x.attribute("href").value}
         
         if @page_no == 1 
             @total_in_page = delta.count
@@ -35,7 +35,7 @@ class Scraper
         full = self.read
         @page_no += 1
         sleep(5)
-        while @page_no <= @max_pages
+        while @page_no <= 10
             puts "Scraping Page: #{@page_no}"
             full += self.read
             @page_no += 1

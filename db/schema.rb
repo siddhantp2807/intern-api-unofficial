@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_22_105916) do
+ActiveRecord::Schema.define(version: 2021_07_24_140050) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,9 +29,21 @@ ActiveRecord::Schema.define(version: 2021_07_22_105916) do
     t.string "exp_str"
     t.datetime "exp_stamp"
     t.string "co_url"
-    t.string "tags", array: true
     t.integer "applicants"
     t.integer "openings"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "tags", array: true
+  end
+
+  create_table "offers_tags", id: false, force: :cascade do |t|
+    t.bigint "offer_id", null: false
+    t.bigint "tag_id", null: false
+    t.index ["offer_id", "tag_id"], name: "index_offers_tags_on_offer_id_and_tag_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -22,6 +22,7 @@ gem 'httparty'
 
 gem 'sidekiq'
 gem 'sidekiq-scheduler'
+gem 'active_model_serializers', '~> 0.10.0'
 
 gem 'json'
 # Reduces boot times through caching; required in config/boot.rb
