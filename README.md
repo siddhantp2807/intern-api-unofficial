@@ -1,6 +1,6 @@
 # README
 
-Unofficial [Internshala](https://internshala.com) API
+Unofficial Rails [Internshala](https://internshala.com) API
 
 ## To run
 
