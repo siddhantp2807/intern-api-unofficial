@@ -1,4 +1,4 @@
-class TagController < ApplicationController
+class Api::V1::TagController < ApplicationController
     before_action only: [:show]
 
     def index

@@ -1,4 +1,4 @@
-class OfferController < ApplicationController
+class Api::V1::OfferController < ApplicationController
     before_action only: [:show]
 
     def index
@@ -17,6 +17,8 @@ class OfferController < ApplicationController
 
     def filter
 
+        count = params[:count].nil? ? 40 : params[:count]
+
         if params[:tags].nil? or params[:tags] == ""
             @selected_offers = Offer.all
         elsif params[:tags] == "all"
@@ -30,7 +32,7 @@ class OfferController < ApplicationController
         
         @selected_offers = @selected_offers.select { |offer| Offer.select_by_pay(params[:max_pay], params[:min_pay], offer) }
 
-        render json: @selected_offers
+        render json: @selected_offers.last(count)
     end
 
 end
