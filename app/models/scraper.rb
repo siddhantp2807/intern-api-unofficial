@@ -35,7 +35,7 @@ class Scraper
         full = self.read
         @page_no += 1
         sleep(5)
-        while @page_no <= 10
+        while @page_no <= @max_pages
             puts "Scraping Page: #{@page_no}"
             full += self.read
             @page_no += 1
